@@ -1,0 +1,32 @@
+<app-modal [modalName]="'addMaterialModal'" >
+    <div class="wrapper">
+        <form (ngSubmit)="submitForm()"> 
+            <div class="input__wrapper">
+                <input class="input mb" readonly type="text" [value]="currentMaterial"  (keydown)="onKeyDown($event)"  (click)="openSelectMaterial(); $event.stopPropagation()">
+                <fa-icon  [icon]="faArrowDown"  class="icon"></fa-icon> 
+                <app-select [contents]="materials" [currentContent]="currentMaterial" (currentContentChanged)="currentChangedMaterial($event)"  [isDropdownOpen]="isSelectMaterialOpen" class="select"></app-select>
+            </div>
+            <div *ngIf="currentMaterial == 'Щебень'" class="input__wrapper">
+                <input class="input mb" readonly type="text" [value]="currentMaterialType"  (keydown)="onKeyDown($event)"  (click)="openSelectMaterialType(); $event.stopPropagation()">
+                <fa-icon  [icon]="faArrowDown"  class="icon"></fa-icon> 
+                <app-select [contents]="rubbles" [currentContent]="currentMaterialType" (currentContentChanged)="currentChangedMaterialType($event)"  [isDropdownOpen]="isSelectMaterialTypeOpen" class="select"></app-select>
+            </div>
+            <div *ngIf="currentMaterial == 'Цемент'" class="input__wrapper">
+                <input class="input mb" readonly type="text" [value]="currentMaterialType"  (keydown)="onKeyDown($event)"  (click)="openSelectMaterialType(); $event.stopPropagation()">
+                <fa-icon  [icon]="faArrowDown"  class="icon"></fa-icon> 
+                <app-select [contents]="cement" [currentContent]="currentMaterialType" (currentContentChanged)="currentChangedMaterialType($event)"  [isDropdownOpen]="isSelectMaterialTypeOpen" class="select"></app-select>
+            </div>
+            <div *ngIf="currentMaterial == 'Битум'" class="input__wrapper">
+                <input class="input mb" readonly type="text" [value]="currentMaterialType"  (keydown)="onKeyDown($event)"  (click)="openSelectMaterialType(); $event.stopPropagation()">
+                <fa-icon  [icon]="faArrowDown"  class="icon"></fa-icon> 
+                <app-select [contents]="bitum" [currentContent]="currentMaterialType" (currentContentChanged)="currentChangedMaterialType($event)"  [isDropdownOpen]="isSelectMaterialTypeOpen" class="select"></app-select>
+            </div>
+            <div class="input__wrapper">
+                <input class="input mb" readonly type="text" [value]="currentUnit"  (keydown)="onKeyDown($event)"  (click)="openSelectUnit(); $event.stopPropagation()">
+                <fa-icon  [icon]="faArrowDown"  class="icon"></fa-icon> 
+                <app-select [contents]="unit" [currentContent]="currentUnit" (currentContentChanged)="currentChangedUnit($event)"  [isDropdownOpen]="isSelectUnitOpen" class="select"></app-select>
+            </div>
+            <app-button [buttonClass]="'primary'" class="btn" [type]="'submit'" [widthFull]="true" >{{loading? 'Загрузка': 'Добавить'}}</app-button>
+        </form>
+    </div>
+</app-modal>

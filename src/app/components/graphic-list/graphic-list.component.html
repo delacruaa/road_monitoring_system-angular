@@ -1,0 +1,51 @@
+<app-button *ngIf="user" [buttonClass]="'primary'" class="btn" (click)="openAddGraphicrModal()" >Добавить Линейный график</app-button>
+
+<ng-container *ngFor="let graphicName of graphicKeys;let indexName= index; let first = first ">
+    <div class="wrapper" *ngIf="indexName!==0" >
+        <div class="names_wrapper"  >
+            <ng-container *ngFor="let graphicObject of graphicValues;let indexObject= index">
+                <ng-container *ngIf="indexObject==indexName">
+                    <p *ngFor="let names of getObjectKeys(graphicObject)"  class="name">{{names |slice:1}}</p>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div  class="table_wrapper"  >
+            <div class="title_wrapper">
+                <p class="title">
+                    {{graphicName |slice:14}}
+                </p>
+                <fa-icon *ngIf="user" [icon]="faClose"  class="delete_icon" (click)="openConfirmModal(graphicName)"></fa-icon> 
+            </div>
+            <div class="count_wrapper">
+                <ng-container *ngFor="let graphicObject of graphicValues;let indexObject= index">
+                    <ng-container *ngIf="indexObject==indexName">
+                        <ng-container *ngFor="let numbers of getObjectValues(graphicObject);let indexNumber= index">
+                            <ng-container *ngIf="indexNumber==0">
+                                <div *ngFor="let number of numbers"  class="count">{{number.num}}</div>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <ng-container *ngFor="let graphicObject of graphicValues;let indexObject= index">
+                <ng-container *ngIf="indexObject==indexName">
+                    <ng-container *ngFor="let graphic of getObjectValues(graphicObject);let indexNumber= index">
+                        <div class="cell_wrapper">
+                         
+                            <app-cell *ngFor="let graphicItem of graphic" [currentRoute]="currentRoute" [graphicName]="graphicName" [constrictiveName]="graphicItem.name" [cellNum]="graphicItem.num" [isDone]="graphicItem.isDones"></app-cell>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+    
+        </div>
+    <app-modal [modalName]="'confirmDeleteModal'" [opacity]="'full'" *ngIf="confirmDeleteModal" >
+        <div class="modal">
+            <p class="title">Вы действительно хотите удалить данный график</p>
+            <app-button [buttonClass]="'ghost'"  [widthFull]="true" (click)="closeModal()"  >Отмена</app-button>
+            <app-button [buttonClass]="'primary'" (click)="deleteGraphic()" [widthFull]="true" >Удалить</app-button>
+        </div>
+    </app-modal>
+</div>
+
+</ng-container>

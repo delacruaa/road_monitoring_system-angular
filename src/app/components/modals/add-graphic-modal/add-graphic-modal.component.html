@@ -1,0 +1,47 @@
+<app-modal [modalName]="'addGraphicModal'" >
+    <div class="wrapper">
+        <form [formGroup] = "formGroup" (ngSubmit)="submitForm()"> 
+            <div class="input__wrapper">
+                <label>Наименования графика</label>
+                <input [ngClass]=" submitted &&  this.formGroup.get('graphicName')?.invalid? 'input__error' : 'input'" type="text"  formControlName="graphicName"   placeholder="н.п.Правая/Левая сторона">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('graphicName')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('graphicName')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Начальный ПК</label>
+                <input [ngClass]=" submitted &&  this.formGroup.get('startPK')?.invalid? 'input__error' : 'input'" type="number"  formControlName="startPK"   placeholder="Вводить только цифры н.п:0">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('startPK')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('startPK')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Конечный ПК</label>
+                <input [ngClass]=" submitted &&  this.formGroup.get('lastPK')?.invalid? 'input__error' : 'input'" type="number"  formControlName="lastPK"   placeholder="Вводить только цифры н.п:422">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('lastPK')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('lastPK')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+               <ng-container  formArrayName="graphics">
+                    <ng-container *ngFor="let graphic of graphicFormGroups.controls; let i =index" formGroupName="{{i}}">
+                        <label>График {{i+1}}</label>
+                        <div class="input__close">
+                            <input formControlName="graphicValue" [ngClass]="submitted &&  graphicFormGroups.controls[i].get('graphicValue')?.invalid? 'input__error' : 'input'" type="text" placeholder="н.п: доп.слой основание С4" >
+                            <fa-icon class="icon" [icon]="faClose" *ngIf="graphicFormGroups.controls.length>1" (click)="removeGraphic(i)"></fa-icon> 
+                        </div>
+                        <div class="error__wrapper" *ngIf="submitted && graphicFormGroups.controls[i].get('graphicValue')?.invalid">
+                            <div class="error" *ngIf="graphicFormGroups.controls[i].get('graphicValue')?.errors?.['required']">
+                                <small>Заполните все поля</small>
+                            </div>
+                        </div>
+                    </ng-container>
+               </ng-container>
+            </div>
+            <div class="btn__wrapper"> 
+                <app-button [buttonClass]="'ghost'"  [widthFull]="true" (click)="addGraphic()" >Добавить График</app-button>
+                <app-button [buttonClass]="'primary'" class="btn" [type]="'submit'" [widthFull]="true" >Добавить</app-button>
+            </div>
+        </form>
+    </div>
+</app-modal>

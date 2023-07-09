@@ -1,0 +1,15 @@
+<app-modal [modalName]="'addProjectModal'" >
+    <div class="wrapper">
+        <form [formGroup] = "formGroup" (ngSubmit)="submitForm()"> 
+            <div class="input__wrapper">
+                <label>Наименования проекта</label>
+                <input [ngClass]=" submitted &&  this.formGroup.get('name')?.invalid? 'input__error' : 'input'" type="text"  formControlName="name"   placeholder="н.п.Реконструкция коридора Астана-Караганда">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('name')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('name')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            
+            <app-button [buttonClass]="'primary'" class="btn" [type]="'submit'" [widthFull]="true" >{{loading? 'Загрузка': 'Добавить'}}</app-button>
+        </form>
+    </div>
+</app-modal>

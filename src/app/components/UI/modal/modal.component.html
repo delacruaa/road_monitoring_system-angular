@@ -1,0 +1,7 @@
+<div  [ngClass]="opacity=='full'? 'overlay full': 'overlay'" (click)="closeModal()" >
+    <div class="modal__content"  [@modalAnimation]  (click)="$event.stopPropagation()">
+        <fa-icon [icon]="faClose" class="close" (click)="closeModal()"></fa-icon> 
+        <ng-content></ng-content>
+    </div>
+</div>
+

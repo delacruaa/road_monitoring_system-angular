@@ -1,0 +1,27 @@
+<app-modal [modalName]="'loginModal'" >
+    <div class="wrapper">
+        <p>test@test.com</p>
+        <p>qwerty</p>
+        <div class="title" *ngIf="errorMessage.length"> 
+            {{errorMessage}}
+        </div>
+        <form [formGroup] = "formGroup" (ngSubmit)="submitForm()"> 
+            <div class="input__wrapper">
+                <label>Email</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('email')?.invalid? 'input__error' : 'input'" formControlName="email" type="email"  placeholder="Email address">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('email')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('email')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                    <div class="error" *ngIf="this.formGroup.get('email')?.errors?.['email']"> <small>Невалидная почта</small> </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Пароль</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('password')?.invalid? 'input__error' : 'input'" formControlName="password" type="password"  placeholder="Password">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('password')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('password')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <app-button [buttonClass]="'primary'" class="btn" [type]="'submit'" [widthFull]="true" >{{loading? 'Загрузка': 'Войти'}}</app-button>
+        </form>
+    </div>
+</app-modal>

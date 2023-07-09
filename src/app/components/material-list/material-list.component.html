@@ -1,0 +1,43 @@
+<div class="btns">
+    <app-button [buttonClass]="'primary'" (click)="exportexcel()">Скачать Excel</app-button>
+    <app-button *ngIf="user" [buttonClass]="'ghost'"  (click)="openMaterialModal()" >Добавить материал</app-button>
+    
+</div>
+<div class="wrapper">
+    <table class="table" id="excel-table" >
+        <thead >
+            <tr >
+                <th>Наименование ДСМ</th>
+                <th>Ед.изм	</th>
+                <th>По проекту</th>
+                <th>Выполнено</th>
+                <th>Остаток</th>
+                <th>Выполнено за {{today}}, м </th>
+                <th>Выполнено за {{yesterday}}, м </th>
+                
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of materials;let i=index">
+            <tr *ngIf="i!==0" >
+                <th class="th">
+                    {{item.type}}
+                    <fa-icon *ngIf="user" [icon]="faClose" class="icon"  (click)="deleteMaterial(item.id)"  ></fa-icon> 
+                </th>
+                <td>{{item.unit!}}</td>
+                <td>
+                    <app-table-input  [user]="user" [currentRoute]="currentRoute" [initialValue]="item.project!" [value1]="'material/'+item.id" [value2]="'project'" ></app-table-input>
+                </td>
+                <td>
+                    <app-table-input  [user]="user" [currentRoute]="currentRoute" [initialValue]="item.done!" [value1]="'material/'+item.id" [value2]="'done'" ></app-table-input>
+                </td>
+                <td>{{item.project!-item.done!}}</td>
+                <td>
+                    <app-table-input  [user]="user" [currentRoute]="currentRoute" [initialValue]="item.today!" [value1]="'material/'+item.id" [value2]="'today'" ></app-table-input>
+                </td>
+                <td>
+                    <app-table-input  [user]="user" [currentRoute]="currentRoute" [initialValue]="item.yesterday!" [value1]="'material/'+item.id" [value2]="'yesterday'" ></app-table-input>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

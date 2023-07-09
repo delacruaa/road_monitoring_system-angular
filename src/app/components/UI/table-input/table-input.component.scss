@@ -1,0 +1,22 @@
+.input_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.input_close {
+    cursor: pointer;
+    color: #274C77;
+}
+
+.text {
+    cursor: pointer;
+}
+
+.text__wrapper {
+    display: flex;
+    align-items: center;
+    gap:10px;
+    justify-content: flex-end;
+}

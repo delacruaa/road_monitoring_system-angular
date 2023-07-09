@@ -1,0 +1,15 @@
+<header class="header">
+    <div class="container">
+      <div class="wrapper">
+        <img class="logo" routerLink="/" src="/assets/logo.png" alt="logo">
+        <div class="btn_wrapper"> 
+          <app-button *ngIf="!user"  [buttonClass]="'primary'" (click)="openRegisterModal()" > Создать аккаунт</app-button>
+          <app-button *ngIf="!user" [buttonClass]="'ghost'" (click)="openLoginModal()" >Войти</app-button>
+          <app-button *ngIf="user" [buttonClass]="'ghost'" (click)="logOut()" >Выйти</app-button>
+        </div>
+      </div>
+    </div>
+</header>
+
+<app-login-modal *ngIf="loginModal" ></app-login-modal>
+<app-register-modal *ngIf="registerModal"></app-register-modal>

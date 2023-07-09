@@ -1,0 +1,9 @@
+<div class="input_wrapper" *ngIf="isActive">
+    <input type='text' [value]="value" (input)="handleInput($event)" (keydown)="typeNumberKeyDown($event)" />
+    <fa-icon  [icon]="faCheck" class="input_close" (click)="editConstructiveItems()"></fa-icon> 
+    <fa-icon [icon]="faClose" class="input_close"  (click)="isActive=false"></fa-icon> 
+</div>
+<div *ngIf="!isActive"   class="text__wrapper">
+    <div class="text" >{{initialValue}}</div> 
+    <fa-icon *ngIf="user" [icon]="faEdit"    (click)="isActive=true"></fa-icon> 
+</div>

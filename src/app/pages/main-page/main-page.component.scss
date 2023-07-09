@@ -1,0 +1,58 @@
+.wrapper {
+    margin-top: 20px;;;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;   
+    .add__project__wrapper {
+        cursor: pointer;
+        width: 264px;
+        height: 156px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+         gap: 20px;
+        align-items: center;
+        background: #F8F8FB;
+        box-shadow: 0px 20.2109px 40.4219px -6.73698px rgba(39, 76, 119, 0.16);
+        border-radius: 16.8424px;
+        transition: 0.6s;
+        &:hover {
+            transition: 0.6s;
+            transform: scale(1.02);
+        }
+        .title {
+    
+            font-weight: 700;
+            font-size: 15px;
+            line-height: 18px;
+           
+            color: #274C77;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            color: #274C77;
+        }
+    }
+    
+}
+
+.error {
+    width: 100%;
+    display: flex;
+    top: 30px;
+    justify-content: center;
+    color: red;
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 1fr);
+        grid-gap: 20px;
+        .add__project__wrapper {
+            width: 100%;
+        }
+    }  
+}

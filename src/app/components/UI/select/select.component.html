@@ -1,0 +1,6 @@
+<ul *ngIf="isDropdownOpen">
+    <li *ngFor="let content of contents"  (click)="editCurrentContent(content)">
+        <p >{{content}}</p>
+        <fa-icon class="icon"  [icon]="faCheck"  *ngIf="content==currentContent" ></fa-icon> 
+    </li>
+</ul>

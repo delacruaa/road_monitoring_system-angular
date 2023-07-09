@@ -1,0 +1,50 @@
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.5); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 232;
+    overflow-y: hidden;
+    .modal__content {
+        overflow-y: scroll;
+        width: 480px;
+        max-height: 100vh; 
+        padding: 32px;
+        border-radius: 10px;
+        background: white; 
+        position: relative;
+        .close {
+            position: absolute;
+            top:20px;
+            right: 20px;
+            cursor: pointer;
+        }
+    }
+ 
+}
+
+.full {
+    background: rgba($color: #000000, $alpha: 0.1); 
+}
+
+@media(max-width:800px) {
+    .overlay {
+        .modal__content {
+            max-width: 480px;  
+            padding: 20px 10px; 
+        }
+    }
+}
+@media(max-width:500px) {
+    .overlay {
+        .modal__content {
+            width: 90%;   
+        }
+    }
+}

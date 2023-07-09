@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <p class="title">
+        {{translateName}}
+    </p>
+   <div class="btns">
+    <app-button [buttonClass]="'ghost'"  [routerLink]="projectName">
+        Перейти
+        <fa-icon [icon]="faArrowRight" ></fa-icon>
+    </app-button>
+    <app-button *ngIf="user" [buttonClass]="'ghost'"  (click)="openConfirmModal()" ><fa-icon [icon]="faTrash"></fa-icon></app-button>
+   </div>
+   
+</div>
+<app-modal [modalName]="'confirmDeleteModal'" [opacity]="'full'"  *ngIf="confirmDeleteModal" >
+    <div class="modal">
+        <p class="title">Вы действительно хотите удалить данный проект</p>
+        <app-button [buttonClass]="'ghost'"  [widthFull]="true" (click)="closeModal()"  >Отмена</app-button>
+        <app-button [buttonClass]="'primary'" (click)="deleteProjectItem()" [widthFull]="true" >Удалить</app-button>
+    </div>
+</app-modal>

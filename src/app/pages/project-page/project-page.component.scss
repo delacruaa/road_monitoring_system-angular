@@ -1,0 +1,28 @@
+.wrapper {
+    width: 100% ;
+    margin-top: 20px;
+    .btn {
+      display: block;
+      width: 32px;
+      height: 36px;
+    }
+    .project__name {
+        margin-top: 20px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15.1582px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #274C77;
+        margin-bottom: 20px;
+      }
+}
+
+.error {
+  width: 100%;
+  display: flex;
+  top: 30px;
+  justify-content: center;
+  color: red;
+}

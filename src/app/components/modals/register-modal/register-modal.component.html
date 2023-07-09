@@ -1,0 +1,44 @@
+<app-modal [modalName]="'registerModal'" >
+    <div class="wrapper">
+        <p class="title">Ваша заявка будет рассмотрена в течение 24 часов. В случае одобрения на электронную почту будет отправлена дополнительная информация</p>
+        <form [formGroup] = "formGroup" (ngSubmit)="submitForm($event)"> 
+            <div class="input__wrapper">
+                <label>Email</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('email')?.invalid? 'input__error' : 'input'" formControlName="email" type="email"  placeholder="Email address">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('email')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('email')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                    <div class="error" *ngIf="this.formGroup.get('email')?.errors?.['email']"> <small>Невалидная почта</small> </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Имя</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('firstName')?.invalid? 'input__error' : 'input'" formControlName="firstName" type="text"  placeholder="Джон">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('firstName')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('firstName')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Фамилия</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('lastName')?.invalid? 'input__error' : 'input'" formControlName="lastName" type="text"  placeholder="Дойл">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('lastName')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('lastName')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Должность</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('major')?.invalid? 'input__error' : 'input'" formControlName="major" type="text"  placeholder="Начальник участка">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('major')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('major')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label>Организация</label>
+                <input [ngClass]="submitted &&  this.formGroup.get('organization')?.invalid? 'input__error' : 'input'" formControlName="organization"  type="text" placeholder="ТОО СП КазГерСтрой">
+                <div class="error__wrapper" *ngIf="submitted &&  this.formGroup.get('organization')?.invalid">
+                    <div class="error" *ngIf="this.formGroup.get('organization')?.errors?.['required']"> <small>Заполните поле</small>  </div>
+                </div>
+            </div>
+            <app-button [buttonClass]="'primary'" class="btn" [type]="'submit'" [widthFull]="true" >{{loading? "Загрузка":"Отправить заявку"}}</app-button>
+        </form>
+    </div>
+</app-modal>

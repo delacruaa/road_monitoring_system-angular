@@ -1,0 +1,93 @@
+<div class="btns">
+    <app-button [buttonClass]="'primary'" (click)="exportexcel()">Скачать Excel</app-button>
+    <app-button *ngIf="user"   [buttonClass]="'ghost'" (click)="openConstructiveModal()" >Добавить конструктив</app-button>
+    
+</div>
+<div class="wrapper">
+    <table class="table" id="excel-table" >
+        <thead >
+            <tr >
+                <th>Конструктив</th>
+                <th>Cторона	</th>
+                <th>По проекту, м</th>
+                <th>Выполнено, м</th>
+                <th>Остаток, м</th>
+                <th>Выполнено за {{today}}, м </th>
+                <th>Выполнено за {{yesterday}}, м </th>
+                
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of constructive; let i =index">
+            <ng-container *ngIf="item.type=='twoRoadway' && i!==0">
+                <tr >
+                    <th class="th">
+                        {{item.constructive}}
+                        <fa-icon *ngIf="user" [icon]="faClose" class="icon"  (click)="deleteConstructive(item.id)" ></fa-icon> 
+                    </th>
+                    <td>Правая</td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.projectRight!" [value1]="'do/'+item.id" [value2]="'projectRight'" ></app-table-input>
+                    </td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.doneRight!" [value1]="'do/'+item.id" [value2]="'doneRight'" ></app-table-input>
+                    </td>
+                    <td>{{item.projectRight!-item.doneRight!}}</td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.todayRight!" [value1]="'do/'+item.id" [value2]="'todayRight'" ></app-table-input>
+                    </td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.yesterdayRight!" [value1]="'do/'+item.id" [value2]="'yesterdayRight'" ></app-table-input>
+                    </td>
+                </tr>
+                <tr >
+                    <th></th>
+                    <td>Левая</td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.projectLeft!" [value1]="'do/'+item.id" [value2]="'projectLeft'" ></app-table-input>
+                    </td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.doneLeft!" [value1]="'do/'+item.id" [value2]="'doneLeft'" ></app-table-input>
+                    </td>
+                    <td>{{item.projectRight!-item.doneRight!}}</td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.todayLeft!" [value1]="'do/'+item.id" [value2]="'todayLeft'" ></app-table-input>
+                    </td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.yesterdayLeft!" [value1]="'do/'+item.id" [value2]="'yesterdayLeft'" ></app-table-input>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="item.type=='oneRoadway' && i!==0">
+                <tr >
+                    <th class="th">
+                        {{item.constructive}}
+                        <fa-icon *ngIf="user" [icon]="faClose" class="icon" (click)="deleteConstructive(item.id)"></fa-icon> 
+                    </th>
+                    <td>Вся ширина</td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.project!" [value1]="'do/'+item.id" [value2]="'project'" ></app-table-input>
+                    </td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.done!" [value1]="'do/'+item.id" [value2]="'done'" ></app-table-input>
+                    </td>
+                    <td>{{item.project!-item.done!}}</td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.today!" [value1]="'do/'+item.id" [value2]="'today'" ></app-table-input>
+                    </td>
+                    <td>
+                        <app-table-input [user]="user" [currentRoute]="currentRoute" [initialValue]="item.yesterday!" [value1]="'do/'+item.id" [value2]="'yesterday'" ></app-table-input>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+<ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple"
+    >
+    <p style="font-size: 20px; color: white">Удаляется...</p>
+   </ngx-spinner>

@@ -1,0 +1,17 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="error" *ngIf="error">
+    Произошла ошибка повторите позже
+</div>
+<div class="wrapper" *ngIf="!loading && !error" >
+    <app-button  routerLink="/" [buttonClass]="'ghost'" class="btn" ><fa-icon [icon]="faArrowLeft"></fa-icon></app-button>
+    <div class="project__name">
+        {{projectName}}
+    </div>
+    <app-graphic-list  [currentRoute]="currentRoute" ></app-graphic-list>
+    <app-constructive-list  [currentRoute]="currentRoute"></app-constructive-list>
+    <app-material-list [currentRoute]="currentRoute"></app-material-list>
+</div>
+
+<app-add-graphic-modal [currentRoute]="currentRoute" *ngIf="addGraphicModal"></app-add-graphic-modal>
+<app-add-constructive-modal [currentRoute]="currentRoute" *ngIf="addConstructiveModal" ></app-add-constructive-modal>
+<app-add-material-modal [currentRoute]="currentRoute" *ngIf="addMaterialModal" ></app-add-material-modal>

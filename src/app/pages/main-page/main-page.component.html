@@ -1,0 +1,15 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="error" *ngIf="error">
+    Произошла ошибка повторите позже
+</div>
+<div class="wrapper" *ngIf="!loading && !error">
+    <app-project-item *ngFor="let project of projectList"  [projectName]="project"></app-project-item>
+    <div class="add__project__wrapper" *ngIf="user" (click)="openAddProjectModal()" >
+        <fa-icon [icon]="faPlus" class="fa-3x icon"></fa-icon>
+        <p class="title">
+        Добавить Проект
+        </p>
+    </div>
+</div>
+
+<app-add-project *ngIf="addProjectModal" ></app-add-project>
